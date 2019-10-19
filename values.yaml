@@ -44,7 +44,7 @@ wordpressUsername: admin
 ## Defaults to a random 10-character alphanumeric string if not set
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
 ##
-wordpressPassword: P@ssw0rd
+wordpressPassword: change-password
 
 ## Admin email
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
@@ -116,8 +116,8 @@ customHTAccessCM:
 ## smtpHost: email-smtp.us-west-2.amazonaws.com
 ## smtpPort: 465
  ##smtpUser:
-## smtpPassword: BCx3XOhE/ULDDDwwwIi738dsYBSLxkVpRnNfek
-## smtpUsername: AKIA4YRddss99sJ
+## smtpPassword: change-password
+## smtpUsername: change-username
 ## smtpProtocol: tls
 
 replicaCount: 1
@@ -125,13 +125,13 @@ replicaCount: 1
 externalDatabase:
 ## All of these values are only used when mariadb.enabled is set to false
   ## Database host
-  host: wp-coderise.ss3d8a.us-east-1.rds.amazonaws.com
+  host: host.us-east-1.rds.amazonaws.com
 
   ## non-root Username for Wordpress Database
-  user: b3s82hdsll2s
+  user: change-username
 
   ## Database password
-  password: "23e8d@3s21da"
+  password: "change-password"
 
   ## Database name
   database: wp_coderise
