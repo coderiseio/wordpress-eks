@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:877371195978:certificate/0d83dd0c-b7986-46ds2-00f8-b6e28s0209f00
+=
+  labels:
+    app: wordpress-ingress
+  name: ingress
+spec:
+    rules:
+    - host: site1.com
+      http:
+        paths:
+        - backend:
+            serviceName: ssl-redirect
+            servicePort: use-annotation
+          path: /*
+        - backend:
+            serviceName: site1-wordpress
+            servicePort: 80
+          path: /*
+    - host: www.site1.com
+      http:
+        paths:
+        - backend:
+            serviceName: ssl-redirect
+            servicePort: use-annotation
+          path: /*
+        - backend:
+            serviceName: site1-wordpress
+            servicePort: 80
+          path: /*
+    - host: site2.com
+      http:
+        paths:
+        - backend:
+            serviceName: ssl-redirect
+            servicePort: use-annotation
+          path: /*
+        - backend:
+            serviceName: site2-wordpress
+            servicePort: 80
+          path: /*
+    - host: www.site2.com
+      http:
+        paths:
+        - backend:
+            serviceName: ssl-redirect
+            servicePort: use-annotation
+          path: /*
+        - backend:
+            serviceName: site2-wordpress
+            servicePort: 80
+          path: /*
